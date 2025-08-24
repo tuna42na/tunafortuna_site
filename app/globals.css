@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -23,4 +23,266 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+} */
+
+body {
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+}
+
+.main {
+  background-image: url("/images/rocks.png");
+  background-color: oldlace;
+  background-size: contain;
+  background-repeat: no-repeat;
+  min-height: 96.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  font-family: descriptionFont;
+}
+h1,
+h2,
+h3 {
+  color: black;
+}
+/* Website Font */
+@font-face {
+  font-family: descriptionFont;
+  src: url(/fonts/Josefin_Sans/static/JosefinSans-ExtraLight.ttf);
+}
+
+/* Central Link Container */
+.outbound-links-container {
+  border: solid 2px rgb(255, 255, 255, 0.5);
+  width: 400px;
+  padding: 20px 20px;
+  text-align: center;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 20px;
+  z-index: 2;
+  animation: fadein 5s 1;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.outbound-links-container > div {
+  width: 100%;
+  height: 140px;
+  margin: auto;
+  position: relative;
+  border-radius: 5px;
+  transition: background-color 1s;
+}
+
+.outbound-links-container > div:hover {
+  background-color: rgb(255, 255, 255, 0.7);
+}
+
+.outbound-links-container > div > a > img {
+  height: 40px;
+  width: auto;
+  position: absolute;
+  top: 25%;
+  right: 50%;
+  transform: translate(50%, 0%);
+}
+
+div .outbound-links-container {
+  background-color: rgba(255, 253, 253, 0.6);
+  border-radius: 5px;
+}
+
+/* Center Logo */
+#tunalogo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: black;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 100px;
+  text-align: center;
+  transition: border-bottom-right-radius 1.5s, border-bottom-left-radius 1.5s,
+    border-top-right-radius 1.5s, border-top-left-radius 1.5s;
+}
+
+a > #abouttunalogo {
+  background: rgb(0, 0, 0);
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  height: 150px;
+  border-radius: 50%;
+}
+#home-link {
+  position: fixed;
+  top: 175px;
+  left: 200px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: descriptionFont;
+  padding: 5px;
+  border-radius: 2px;
+  font-size: 15px;
+  box-shadow: 2px 2px 5px grey;
+  opacity: 0;
+  transition: opacity 1s, left 1s;
+}
+#logo-tag:hover ~ #home-link {
+  opacity: 1;
+  left: 15%;
+}
+
+#about-link {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: descriptionFont;
+  padding: 5px;
+  border-radius: 2px;
+  font-size: 15px;
+  box-shadow: 2px 2px 5px grey;
+  opacity: 0;
+  transition: opacity 1s, top 1s;
+}
+
+#logo-tag:hover ~ #about-link {
+  opacity: 1;
+  top: 65%;
+}
+
+/* Text Formatting */
+#Code-Text,
+#Music-Text,
+#Codepen-Text,
+#Resume-Text {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 50%;
+  color: black;
+  font-family: descriptionFont;
+  font-weight: 100;
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+/* Descriptive Text Visibility */
+#Code:hover > #Code-Text,
+#Music:hover > #Music-Text,
+#Codepen:hover > #Codepen-Text,
+#Resume:hover > #Resume-Text {
+  opacity: 1;
+}
+
+#Code:hover ~ a > img#tunalogo {
+  border-top-left-radius: 15%;
+}
+
+#Music:hover ~ a > img#tunalogo {
+  border-top-right-radius: 15%;
+}
+
+#Codepen:hover ~ a > img#tunalogo {
+  border-bottom-left-radius: 15%;
+}
+
+#Resume:hover ~ a > img#tunalogo {
+  border-bottom-right-radius: 15%;
+}
+
+#tunaheaderlogo {
+  animation: intro 5s 1;
+  position: fixed;
+  z-index: 42;
+  top: 10%;
+  left: 7%;
+  width: 20%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: rgba(255, 253, 253, 1);
+  transition: background-color 1s;
+  opacity: 0%;
+}
+
+@keyframes intro {
+  0% {
+    top: 10%;
+    left: 50%;
+    opacity: 100%;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+  }
+  55% {
+    top: 50%;
+    left: 50%;
+    opacity: 100%;
+  }
+  100% {
+    top: 10%;
+    left: 7%;
+    opacity: 0%;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0%;
+  }
+  50% {
+    opacity: 0%;
+    grid-gap: 250px;
+  }
+  55% {
+    visibility: 20%;
+    grid-gap: 150px;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+/* Mobile CSS */
+@media only screen and (max-width: 700px) {
+  .main {
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  #tunalogo {
+    top: 0%;
+  }
+  #about-link {
+    opacity: 1;
+    top: 12%;
+  }
+  .outbound-links-container {
+    width: 60%;
+  }
+  #Code-Text,
+  #Music-Text,
+  #Codepen-Text,
+  #Resume-Text {
+    opacity: 1;
+  }
 }
