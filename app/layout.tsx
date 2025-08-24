@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
-import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
-
-const josefinSans = Josefin_Sans({
-  variable: "--font-josefin-sans",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Tuna Fortuna",
@@ -19,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${josefinSans.variable} antialiased`}>{children}</body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
