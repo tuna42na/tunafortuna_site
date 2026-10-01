@@ -45,10 +45,10 @@ export default function Home() {
                 width={48}
                 height={48}
                 src="/images/code_pen.svg"
-                alt="Blog"
+                alt="Hot takes"
               />
             </Link>
-            <h2 className={styles.iconLabel}>Blog</h2>
+            <h2 className={styles.iconLabel}>Hot Takes</h2>
           </div>
           <div className={`${styles.iconTile} ${styles.resume}`}>
             <a

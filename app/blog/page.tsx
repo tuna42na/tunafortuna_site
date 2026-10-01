@@ -13,7 +13,7 @@ export default function BlogIndexPage() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="blog-card p-8">
-        <h1 className="text-3xl font-bold mb-6">Blog</h1>
+        <h1 className="text-3xl font-bold mb-6">Hot Takes</h1>
 
         {posts.length === 0 && <p>No posts yet — check back soon.</p>}
 
@@ -37,7 +37,9 @@ export default function BlogIndexPage() {
           ))}
         </ul>
 
-        <Link href="/" className="inline-block mt-8 text-sm text-gray-500 hover:underline">
+        <Link
+          href="/"
+          className="inline-block mt-8 text-sm text-gray-500 hover:underline">
           ← Back home
         </Link>
       </div>
