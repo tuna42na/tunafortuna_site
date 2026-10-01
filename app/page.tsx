@@ -1,50 +1,39 @@
 import Image from "next/image";
+import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <main>
+    <main className={styles.main}>
       <Image
         width={48}
         height={48}
-        id="tunaheaderlogo"
+        className={styles.tunaHeaderLogo}
         style={{ width: "20%" }}
         src="/images/tunalogo.svg"
         alt="circular tuna fortuna logo"
       />
 
       <div className="container">
-        <div className="outbound-links-container">
-          <div id="Code">
+        <div className={styles.outboundLinksContainer}>
+          <div className={`${styles.iconTile} ${styles.code}`}>
             <a
               href="https://github.com/tuna42na"
               target="_blank"
               rel="noopener noreferrer">
-              <Image
-                width={48}
-                height={48}
-                className="iconSvg"
-                src="/images/code.svg"
-                alt="Code"
-              />
+              <Image width={48} height={48} src="/images/code.svg" alt="Code" />
             </a>
-            <h2 id="Code-Text">Github</h2>
+            <h2 className={styles.iconLabel}>Github</h2>
           </div>
-          <div id="Music">
+          <div className={`${styles.iconTile} ${styles.music}`}>
             <a
               href="https://www.familyandfriendsband.com/"
               target="_blank"
               rel="noopener noreferrer">
-              <Image
-                width={48}
-                height={48}
-                className="iconSvg"
-                src="/images/bass.svg"
-                alt="Music"
-              />
+              <Image width={48} height={48} src="/images/bass.svg" alt="Music" />
             </a>
-            <h2 id="Music-Text">Music</h2>
+            <h2 className={styles.iconLabel}>Music</h2>
           </div>
-          <div id="Codepen">
+          <div className={`${styles.iconTile} ${styles.codepen}`}>
             <a
               href="https://codepen.io/tuna42na/"
               target="_blank"
@@ -52,14 +41,13 @@ export default function Home() {
               <Image
                 width={48}
                 height={48}
-                className="iconSvg"
                 src="/images/code_pen.svg"
                 alt="Codepen"
               />
             </a>
-            <h2 id="Codepen-Text">CodePen</h2>
+            <h2 className={styles.iconLabel}>CodePen</h2>
           </div>
-          <div id="Resume">
+          <div className={`${styles.iconTile} ${styles.resume}`}>
             <a
               href="https://www.linkedin.com/in/tuna-fortuna/"
               target="_blank"
@@ -67,18 +55,17 @@ export default function Home() {
               <Image
                 width={100}
                 height={48}
-                className="iconSvg"
                 src="/images/resume.svg"
                 alt="Resume"
               />
             </a>
-            <h2 id="Resume-Text">LinkedIn</h2>
+            <h2 className={styles.iconLabel}>LinkedIn</h2>
           </div>
-          <a id="logo-tag" href="#">
+          <a className={styles.logoLink} href="#">
             <Image
               width={48}
               height={48}
-              id="tunalogo"
+              className={styles.tunaLogo}
               src="/images/tunalogo.svg"
               alt="center circular tuna fortuna logo"
             />
