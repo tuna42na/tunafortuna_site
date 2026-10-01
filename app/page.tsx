@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -29,23 +30,25 @@ export default function Home() {
               href="https://www.familyandfriendsband.com/"
               target="_blank"
               rel="noopener noreferrer">
-              <Image width={48} height={48} src="/images/bass.svg" alt="Music" />
+              <Image
+                width={48}
+                height={48}
+                src="/images/bass.svg"
+                alt="Music"
+              />
             </a>
             <h2 className={styles.iconLabel}>Music</h2>
           </div>
           <div className={`${styles.iconTile} ${styles.codepen}`}>
-            <a
-              href="https://codepen.io/tuna42na/"
-              target="_blank"
-              rel="noopener noreferrer">
+            <Link href="/blog">
               <Image
                 width={48}
                 height={48}
                 src="/images/code_pen.svg"
-                alt="Codepen"
+                alt="Blog"
               />
-            </a>
-            <h2 className={styles.iconLabel}>CodePen</h2>
+            </Link>
+            <h2 className={styles.iconLabel}>Blog</h2>
           </div>
           <div className={`${styles.iconTile} ${styles.resume}`}>
             <a
