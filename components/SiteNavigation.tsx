@@ -4,22 +4,22 @@ import styles from "./SiteNavigation.module.css";
 
 const links = [
   {
-    label: "GitHub",
-    href: "https://github.com/tuna42na",
+    label: "Projects",
+    href: "/projects",
     icon: "/images/code.svg",
-    external: true,
+    external: false,
   },
   {
-    label: "Projects",
-    href: "https://www.familyandfriendsband.com/",
+    label: "Music",
+    href: "/music",
     icon: "/images/bass.svg",
-    external: true,
+    external: false,
   },
   {
     label: "About",
-    href: "https://www.linkedin.com/in/tuna-fortuna/",
+    href: "/about",
     icon: "/images/resume.svg",
-    external: true,
+    external: false,
   },
   {
     label: "Writing",

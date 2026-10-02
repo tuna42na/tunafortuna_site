@@ -8,21 +8,21 @@ import styles from "./page.module.css";
 const destinations = [
   {
     title: "Projects",
-    href: "https://github.com/tuna42na",
+    href: "/projects",
     icon: "/images/code.svg",
-    external: true,
+    external: false,
   },
   {
     title: "Music",
-    href: "https://www.familyandfriendsband.com/",
+    href: "/music",
     icon: "/images/bass.svg",
-    external: true,
+    external: false,
   },
   {
     title: "About",
-    href: "https://www.linkedin.com/in/tuna-fortuna/",
+    href: "/about",
     icon: "/images/resume.svg",
-    external: true,
+    external: false,
   },
   {
     title: "Writing",
