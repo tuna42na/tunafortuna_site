@@ -1,174 +1,260 @@
-.main {
-  background-image: url("/images/falling-rocks.png");
-  background-color: oldlace;
-  background-size: contain;
-  background-repeat: no-repeat;
-  min-height: 96.5vh;
+.page {
+  min-height: 100vh;
+  padding: 10px;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.shell {
+  width: min(100%, 1440px);
+  margin: 0 auto;
+}
+
+.intro {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 0.95fr) minmax(
+      250px,
+      0.95fr
+    );
+  align-items: center;
+  gap: clamp(22px, 4vw, 60px);
+  min-height: max(560px, calc(100svh - 28px));
+  overflow: hidden;
+  padding: clamp(30px, 5vw, 70px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    radial-gradient(
+      ellipse at 19% 45%,
+      rgba(255, 255, 255, 0.65),
+      transparent 37%
+    ),
+    linear-gradient(115deg, #fbf4e7 0%, #fffaf1 54%, #fbf5e9 100%);
+}
+
+.artwork {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 49%;
+  opacity: 0.96;
+  pointer-events: none;
+}
+
+.artwork img {
+  object-fit: contain;
+  object-position: left center;
+  filter: grayscale(1) contrast(0.92);
+}
+
+.destinationGrid {
+  position: relative;
+  z-index: 1;
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  justify-self: center;
+  width: min(100%, 370px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 3px;
+  background: rgba(255, 253, 247, 0.66);
+  backdrop-filter: blur(3px);
+}
+
+.destination {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  font-family: descriptionFont;
+  gap: 9px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color 160ms ease;
 }
 
-.tunaHeaderLogo {
-  animation: intro 5s 1;
-  position: fixed;
-  z-index: 42;
-  top: 10%;
-  left: 7%;
-  width: 20%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background-color: rgba(255, 253, 253, 1);
-  transition: background-color 1s;
-  opacity: 0%;
+.destination:nth-child(odd) {
+  border-right: 1px solid rgba(217, 201, 158, 0.25);
 }
 
-@keyframes intro {
-  0% {
-    top: 10%;
-    left: 50%;
-    opacity: 100%;
-  }
-  50% {
-    top: 50%;
-    left: 50%;
-  }
-  55% {
-    top: 50%;
-    left: 50%;
-    opacity: 100%;
-  }
-  100% {
-    top: 10%;
-    left: 7%;
-    opacity: 0%;
-  }
+.destination:nth-child(-n + 2) {
+  border-bottom: 1px solid rgba(217, 201, 158, 0.25);
 }
 
-/* Central link container */
-.outboundLinksContainer {
-  border: solid 2px rgb(255, 255, 255, 0.5);
-  width: 400px;
-  padding: 20px 20px;
-  text-align: center;
-  margin: auto;
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 20px;
-  z-index: 2;
-  animation: fadein 5s 1;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 253, 253, 0.6);
-  border-radius: 5px;
+.destination:hover,
+.destination:focus-visible {
+  background: rgba(255, 255, 255, 0.62);
 }
 
-@keyframes fadein {
-  0% {
-    opacity: 0%;
-  }
-  50% {
-    opacity: 0%;
-    grid-gap: 250px;
-  }
-  55% {
-    visibility: 20%;
-    grid-gap: 150px;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-
-.iconTile {
-  width: 100%;
-  height: 140px;
-  margin: auto;
-  position: relative;
-  border-radius: 5px;
-  transition: background-color 1s;
-}
-
-.iconTile:hover {
-  background-color: rgb(255, 255, 255, 0.7);
-}
-
-.iconTile img {
-  height: 40px;
-  width: auto;
-  position: absolute;
-  top: 25%;
-  right: 50%;
-  transform: translate(50%, 0%);
-}
-
-.iconLabel {
-  position: absolute;
-  transform: translate(-50%, 10%);
-  top: 60%;
-  left: 50%;
-  color: black;
-  font-family: descriptionFont;
-  font-weight: 100;
-  font-size: 20px;
-  opacity: 0;
-  transition: opacity 2s;
-}
-
-.iconTile:hover > .iconLabel {
-  opacity: 1;
-}
-
-/* Center logo, with each icon tile claiming a different corner on hover */
-.tunaLogo {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: black;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.destination:focus-visible,
+.centerLogo:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
   z-index: 3;
-  text-align: center;
-  transition: border-bottom-right-radius 1.5s, border-bottom-left-radius 1.5s,
-    border-top-right-radius 1.5s, border-top-left-radius 1.5s;
 }
 
-.code:hover ~ .logoLink > .tunaLogo {
-  border-top-left-radius: 15%;
+.destinationIcon {
+  width: 29px;
+  height: 29px;
+  object-fit: contain;
 }
 
-.music:hover ~ .logoLink > .tunaLogo {
-  border-top-right-radius: 15%;
+.destinationTitle {
+  font-size: 13px;
 }
 
-.codepen:hover ~ .logoLink > .tunaLogo {
-  border-bottom-left-radius: 15%;
+.centerLogo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 98px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  background: #fffaf0;
+  transform: translate(-50%, -50%);
 }
 
-.resume:hover ~ .logoLink > .tunaLogo {
-  border-bottom-right-radius: 15%;
+.centerLogo img {
+  width: 76px;
+  height: 76px;
 }
 
-@media only screen and (max-width: 700px) {
-  .main {
-    background-size: cover;
-    background-repeat: repeat-y;
+.introCopy {
+  position: relative;
+  z-index: 1;
+  grid-column: 3;
+  grid-row: 1;
+  max-width: 375px;
+  justify-self: center;
+}
+
+.accentLine {
+  display: block;
+  width: 40px;
+  height: 1px;
+  margin-bottom: 20px;
+  background: var(--gold);
+}
+
+.introCopy h1 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4.1vw, 56px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1.03;
+}
+
+.introText {
+  max-width: 355px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.footer {
+  padding: 10px 4px 0;
+  color: var(--muted);
+  font-size: 10px;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr) minmax(270px, 1fr);
+    grid-template-rows: minmax(300px, 1fr) auto;
+    gap: 34px;
+    min-height: 570px;
+    padding: 38px;
   }
-  .tunaLogo {
-    top: 0%;
+
+  .destinationGrid {
+    grid-column: 2;
+    grid-row: 1;
   }
-  .outboundLinksContainer {
+
+  .introCopy {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    padding-top: 0;
+  }
+
+  .artwork {
     width: 60%;
   }
-  .iconLabel {
-    opacity: 1;
+}
+
+@media (max-width: 620px) {
+  .page {
+    padding: 6px;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    gap: 26px;
+    min-height: calc(100svh - 12px);
+    padding: 48px 22px 30px;
+  }
+
+  .artwork {
+    inset: 0 0 auto;
+    width: 100%;
+    height: 58%;
+    opacity: 0.24;
+  }
+
+  .artwork img {
+    object-position: left center;
+  }
+
+  .destinationGrid {
+    grid-column: 1;
+    grid-row: 1;
+    width: min(82vw, 340px);
+    align-self: end;
+  }
+
+  .introCopy {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    max-width: 360px;
+    padding: 0;
+  }
+
+  .accentLine {
+    margin-bottom: 14px;
+  }
+
+  .introCopy h1 {
+    margin-bottom: 12px;
+    font-size: clamp(38px, 11vw, 48px);
+  }
+
+  .introText {
+    font-size: 14px;
+  }
+
+  .centerLogo {
+    width: 76px;
+  }
+
+  .centerLogo img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .destination {
+    transition: none;
   }
 }

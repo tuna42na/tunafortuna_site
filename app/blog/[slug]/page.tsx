@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+import SiteNavigation from "@/components/SiteNavigation";
 
 type Params = { slug: string };
 
@@ -18,7 +19,10 @@ export async function generateMetadata({
   const { slug } = await params;
   try {
     const post = getPostBySlug(slug);
-    return { title: `${post.title} | Tuna Fortuna`, description: post.description };
+    return {
+      title: `${post.title} | Tuna Fortuna`,
+      description: post.description,
+    };
   } catch {
     return {};
   }
@@ -37,20 +41,36 @@ export default async function BlogPostPage({
   } catch {
     notFound();
   }
+  const readMinutes = Math.max(
+    1,
+    Math.ceil(post.content.trim().split(/\s+/).length / 220),
+  );
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="blog-card p-8">
-        <Link href="/blog" className="text-sm text-gray-500 hover:underline">
-          ← All posts
-        </Link>
-
-        <h1 className="text-3xl font-bold mt-4 mb-1">{post.title}</h1>
-        <time dateTime={post.date} className="block text-sm text-gray-500 mb-6">
-          {post.date}
-        </time>
-
-        <MarkdownRenderer content={post.content} />
+    <div className="contentPage">
+      <div className="contentFrame">
+        <SiteNavigation active="Writing" />
+        <main className="contentMain articleMain">
+          <Link href="/blog" className="allPostsLink">
+            ← All posts
+          </Link>
+          <header className="articleHeader">
+            <time dateTime={post.date} className="postDate">
+              {new Date(`${post.date}T12:00:00`).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </time>
+            <span className="articleMeta">· &nbsp; {readMinutes} min read</span>
+            <h1 className="articleTitle">{post.title}</h1>
+            {post.description && (
+              <p className="articleSummary">{post.description}</p>
+            )}
+          </header>
+          <div className="articleArtwork" aria-hidden="true" />
+          <MarkdownRenderer content={post.content} />
+        </main>
       </div>
     </div>
   );
