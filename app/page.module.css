@@ -113,9 +113,19 @@
   aspect-ratio: 1;
   place-items: center;
   border: 2px solid var(--gold);
-  border-radius: 50%;
+  border-radius: var(--logo-tl, 50%) var(--logo-tr, 50%) var(--logo-br, 50%)
+    var(--logo-bl, 50%);
   background: #fffaf0;
+  box-shadow: 0 5px 18px rgba(67, 53, 23, 0.12);
   transform: translate(-50%, -50%);
+  transition:
+    border-radius 220ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    box-shadow 180ms ease;
+  will-change: border-radius;
+}
+
+.centerLogo:hover {
+  box-shadow: 0 7px 22px rgba(67, 53, 23, 0.18);
 }
 
 .centerLogo img {
@@ -255,6 +265,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .destination {
+    transition: none;
+  }
+
+  .centerLogo {
     transition: none;
   }
 }

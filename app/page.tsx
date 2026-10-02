@@ -1,16 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
 import styles from "./page.module.css";
 
 const destinations = [
   {
-    title: "GitHub",
+    title: "Projects",
     href: "https://github.com/tuna42na",
     icon: "/images/code.svg",
     external: true,
   },
   {
-    title: "Projects",
+    title: "Music",
     href: "https://www.familyandfriendsband.com/",
     icon: "/images/bass.svg",
     external: true,
@@ -30,6 +33,8 @@ const destinations = [
 ];
 
 export default function Home() {
+  const destinationGridRef = useRef<HTMLElement>(null);
+
   return (
     <main className={styles.page}>
       <div className={styles.shell}>
@@ -44,8 +49,49 @@ export default function Home() {
             />
           </div>
           <nav
+            ref={destinationGridRef}
             className={styles.destinationGrid}
-            aria-label="Explore Tuna Fortuna">
+            aria-label="Explore Tuna Fortuna"
+            onPointerMove={(event) => {
+              if (event.pointerType !== "mouse") return;
+
+              const grid = destinationGridRef.current;
+              if (!grid) return;
+
+              const bounds = grid.getBoundingClientRect();
+              const x = event.clientX - (bounds.left + bounds.width / 2);
+              const y = event.clientY - (bounds.top + bounds.height / 2);
+              const normalizedX = x / (bounds.width / 2);
+              const normalizedY = y / (bounds.height / 2);
+              const distance = Math.hypot(normalizedX, normalizedY);
+              const strength = Math.min(1, distance);
+              const activeCorner =
+                normalizedY < 0
+                  ? normalizedX < 0
+                    ? "--logo-tl"
+                    : "--logo-tr"
+                  : normalizedX < 0
+                    ? "--logo-bl"
+                    : "--logo-br";
+
+              ["--logo-tl", "--logo-tr", "--logo-br", "--logo-bl"].forEach(
+                (property) =>
+                  grid.style.setProperty(
+                    property,
+                    property === activeCorner
+                      ? `${50 - 32 * strength}%`
+                      : "50%",
+                  ),
+              );
+            }}
+            onPointerLeave={() => {
+              const grid = destinationGridRef.current;
+              if (!grid) return;
+
+              ["--logo-tl", "--logo-tr", "--logo-br", "--logo-bl"].forEach(
+                (property) => grid.style.setProperty(property, "50%"),
+              );
+            }}>
             {destinations.map((destination) => {
               const content = (
                 <>
