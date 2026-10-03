@@ -100,7 +100,6 @@ p {
 
 .blog-page {
   min-height: 100vh;
-  padding: clamp(28px, 7vw, 76px) 20px;
   background:
     radial-gradient(
       ellipse at 85% 5%,

@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Tuna Fortuna",
-  description: "Frontend Developer and lead bassist",
+  description: "Software engineer, product developer, and lead bassist.",
 };
 
 export default function RootLayout({

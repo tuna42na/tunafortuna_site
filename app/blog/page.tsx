@@ -19,7 +19,8 @@ export default function BlogIndexPage() {
           <p className="contentEyebrow">The journal</p>
           <h1 className="blogTitle">Writing</h1>
           <p className="blogLead">
-            Notes on software, design, and whatever else I’m curious about.
+            Notes on philosophy, design, ethics, software, and whatever else
+            I&apos;m trying to understand what I feel about. A work in progress.
           </p>
 
           {posts.length === 0 && <p>No posts yet — check back soon.</p>}

@@ -4,27 +4,80 @@ import styles from "@/components/FeaturePage.module.css";
 
 export const metadata: Metadata = {
   title: "About | Tuna Fortuna",
-  description: "Frontend developer and lead bassist.",
+  description: "Software engineer, product developer, and lead bassist.",
 };
 
 const skills = [
   "TypeScript",
   "React",
+  "Vue",
   "Next.js",
+  "React Native",
+  "Dart",
+  "Flutter",
   "CSS",
+  "PostgreSQL",
+  "Redis",
+  "GraphQL",
+  "Ruby",
+  "Rails",
+  "GoLang",
+  "Docker",
+  "Kubernetes",
+  "Google Analytics | Tag Manager | Ads",
+  "AWS",
+  "Bash",
+  "Jenkins",
+  "GHA",
+  "CI/CD",
+  "NeoVim",
+  "Herdr",
+  "ClaudeCode",
+  "GitHub Copilot",
   "Accessibility",
-  "Design systems",
+  "Design Architecture",
+  "Product Development",
+  "Agile Methodologies",
+  "Scrum",
+  "Kanban",
 ];
 
-// Placeholder timeline — replace with real roles.
 const experience = [
-  { period: "Now", role: "Frontend Developer", place: "Your company" },
-  { period: "Before", role: "Previous role", place: "Previous company" },
+  {
+    period: "Nov 2021 – Present",
+    role: "Senior Software Engineer",
+    place: "GroundFloor",
+    description:
+      "Shipped mobile and full-stack product features across React Native, Vue, GraphQL, Rails, and PostgreSQL. Built reusable UI and animation systems, improved analytics-informed UX, and streamlined CI/CD so releases went from hours to minutes.",
+  },
+  {
+    period: "2019 – 2020",
+    role: "Fiber Optic Technician",
+    place: "Bazemore Fiber Optics",
+    description:
+      "Prepared and spliced ribbon fiber cables, and analyzed OTDR reports to identify breaks, bends, and weak splices.",
+  },
+  {
+    period: "Jan 2017 – 2021",
+    role: "UI and SEO Technical Support",
+    place: "Perfect Pitch Concepts",
+    description:
+      "Improved SEO, site performance, and user experience through technical audits, WordPress maintenance, and analysis of search, traffic, and advertising data.",
+  },
+  {
+    period: "2013 – Present",
+    role: "Musician / Owner",
+    place: "Family and Friends LLC",
+    description:
+      "Collaborate on music, creative direction, and release branding, while managing business operations and bookkeeping for the LLC.",
+  },
 ];
 
 const elsewhere = [
   { label: "GitHub", href: "https://github.com/tuna42na" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/tuna-fortuna/" },
+  { label: "Goodreads", href: "https://www.goodreads.com/tuna_fortuna" },
+  { label: "Instagram", href: "https://www.instagram.com/tuna42na/" },
   { label: "Family & Friends", href: "https://www.familyandfriendsband.com/" },
 ];
 
@@ -34,22 +87,24 @@ export default function AboutPage() {
       <div className="contentFrame">
         <SiteNavigation active="About" />
         <main className="contentMain">
-          <p className="contentEyebrow">Hello</p>
+          <p className="contentEyebrow">Behind the curtain</p>
           <h1 className="blogTitle">About</h1>
-          <p className="blogLead">Frontend developer and lead bassist.</p>
+          <p className="blogLead">
+            Software engineer, product developer, and lead bassist.
+          </p>
 
           <div className={styles.prose}>
             <p>
-              I build thoughtful, accessible interfaces for the web, and spend
-              the rest of my time holding down the low end in Family &amp;
-              Friends. This site is where the two overlap.
+              I build thoughtful, accessible applications, and create music and
+              community with my group, Family &amp; Friends. I love building and
+              collaborating and am driven by mission-oriented work.
             </p>
           </div>
 
           <div className={styles.actions}>
             <a
               className={styles.button}
-              href="/images/Tuna-Resume.pdf"
+              href="/images/TunaFortunaResume.pdf"
               target="_blank"
               rel="noopener noreferrer">
               Download résumé
@@ -78,6 +133,7 @@ export default function AboutPage() {
                   <div>
                     <h3 className={styles.listTitle}>{item.role}</h3>
                     <p className={styles.cardText}>{item.place}</p>
+                    <p className={styles.cardText}>{item.description}</p>
                   </div>
                 </li>
               ))}
@@ -99,10 +155,10 @@ export default function AboutPage() {
             </ul>
           </section>
 
-          <section className={styles.section} aria-labelledby="elsewhere">
+          <section className={styles.section} aria-labelledby="external-links">
             <div className={styles.sectionHeader}>
-              <h2 id="elsewhere" className={styles.sectionTitle}>
-                Elsewhere
+              <h2 id="external-links" className={styles.sectionTitle}>
+                External Links
               </h2>
             </div>
             <div className={styles.links} style={{ marginTop: 18 }}>
