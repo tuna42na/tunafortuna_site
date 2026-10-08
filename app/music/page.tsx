@@ -8,20 +8,43 @@ export const metadata: Metadata = {
 };
 
 const BAND_SITE = "https://www.familyandfriendsband.com/";
+const BAND_TIDAL = "https://tidal.com/artist/5570217/u";
 
 // Placeholder entries — set embedUrl to a Spotify/Bandcamp/YouTube embed URL to show a player.
 const releases: {
   title: string;
   year: string;
-  note: string;
+  note?: string;
   embedUrl?: string;
   link?: string;
 }[] = [
   {
-    title: "Latest release",
+    title: "Kid Spirit",
     year: "2026",
-    note: "Add a Spotify or Bandcamp embed URL here to show an inline player.",
-    link: BAND_SITE,
+    note: "Kid Spirit",
+    embedUrl: "https://embed.tidal.com/albums/420711031",
+    link: BAND_TIDAL,
+  },
+  {
+    title: "Felix Culpa",
+    year: "2018",
+    note: "Felix Culpa",
+    embedUrl: "https://embed.tidal.com/albums/100727249",
+    link: BAND_TIDAL,
+  },
+  {
+    title: "XOXO",
+    year: "2015",
+    note: "XOXO",
+    embedUrl: "https://embed.tidal.com/albums/47396686",
+    link: BAND_TIDAL,
+  },
+  {
+    title: "Love You Mean It",
+    year: "2014",
+    note: "Love You Mean It",
+    embedUrl: "https://embed.tidal.com/albums/40504301",
+    link: BAND_TIDAL,
   },
 ];
 
@@ -34,9 +57,13 @@ const shows: {
 }[] = [];
 
 const gear = [
-  { label: "Bass", value: "Your main bass" },
-  { label: "Amp", value: "Your amp" },
-  { label: "Pedals", value: "Your pedalboard" },
+  { label: "Bass", value: "1979 Music Man Sabre | 1980 G&L L-2000" },
+  { label: "Amp", value: "Hartke LH500 | 2x15 Custom Sunn Replica Cabinet" },
+  {
+    label: "Pedals",
+    value:
+      "Boss OC-3 | MXR M80 | Electro-Harmonix Mel9 | Electro-Harmonix Superego",
+  },
 ];
 
 export default function MusicPage() {
@@ -68,7 +95,7 @@ export default function MusicPage() {
                 Listen
               </h2>
             </div>
-            <ul className={styles.cardGrid}>
+            <ul className={`${styles.cardGrid} ${styles.releaseGrid}`}>
               {releases.map((release) => (
                 <li key={release.title}>
                   <article className={styles.card}>

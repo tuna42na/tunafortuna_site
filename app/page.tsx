@@ -141,12 +141,10 @@ export default function Home() {
           </nav>
           <div className={styles.introCopy}>
             <span className={styles.accentLine} aria-hidden="true" />
-            <h1 id="intro-title">
-              Code, writing, and a few other curiosities.
-            </h1>
+            <h1 id="intro-title">👋🏼 Howdy y&apos;all</h1>
             <p className={styles.introText}>
-              A collection of projects, thoughts, and things I’m learning along
-              the way.
+              This is my collection of musings and works. Documentation of
+              discovery and curiosity.
             </p>
           </div>
         </section>

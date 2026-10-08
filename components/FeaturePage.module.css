@@ -38,6 +38,14 @@
   list-style: none;
 }
 
+.releaseGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+}
+
+.releaseGrid .embed {
+  height: 400px;
+}
+
 .card {
   display: flex;
   flex-direction: column;
