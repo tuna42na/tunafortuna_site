@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import SiteNavigation from "@/components/SiteNavigation";
 import styles from "@/components/FeaturePage.module.css";
+import aboutStyles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "About | Tuna Fortuna",
@@ -89,33 +91,47 @@ export default function AboutPage() {
         <main className="contentMain">
           <p className="contentEyebrow">Behind the curtain</p>
           <h1 className="blogTitle">About</h1>
-          <p className="blogLead">
-            Software engineer, product developer, and lead bassist.
-          </p>
+          <div className={aboutStyles.intro}>
+            <div>
+              <p className="blogLead">
+                Software engineer, product developer, philosopher, and lead
+                bassist.
+              </p>
 
-          <div className={styles.prose}>
-            <p>
-              I build thoughtful, accessible applications, and create music and
-              community with my group, Family &amp; Friends. I love building and
-              collaborating and am driven by mission-oriented work.
-            </p>
-          </div>
+              <div className={styles.prose}>
+                <p>
+                  I build thoughtful, accessible applications, and create music
+                  and community with my group, Family &amp; Friends. I believe
+                  that the best outcomes come from collaboration and shared
+                  mission-driven vision.
+                </p>
+              </div>
 
-          <div className={styles.actions}>
-            <a
-              className={styles.button}
-              href="/images/TunaFortunaResume.pdf"
-              target="_blank"
-              rel="noopener noreferrer">
-              Download résumé
-            </a>
-            <a
-              className={styles.button}
-              href="https://www.linkedin.com/in/tuna-fortuna/"
-              target="_blank"
-              rel="noopener noreferrer">
-              LinkedIn →
-            </a>
+              <div className={styles.actions}>
+                <a
+                  className={styles.button}
+                  href="/images/TunaFortunaResume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Download résumé
+                </a>
+                <a
+                  className={styles.button}
+                  href="https://www.linkedin.com/in/tuna-fortuna/"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  LinkedIn →
+                </a>
+              </div>
+            </div>
+            <Image
+              className={aboutStyles.portrait}
+              src="/images/profile-pic.png"
+              alt="Tuna Fortuna smiling, wearing glasses"
+              width={612}
+              height={612}
+              sizes="(max-width: 600px) 220px, 250px"
+            />
           </div>
 
           <section className={styles.section} aria-labelledby="experience">

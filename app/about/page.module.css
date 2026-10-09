@@ -1,0 +1,25 @@
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(180px, 24vw, 250px);
+  align-items: center;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .portrait {
+    width: min(60vw, 220px);
+    justify-self: center;
+  }
+}
