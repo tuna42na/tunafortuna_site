@@ -1,18 +1,22 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 export default function NotFoundPage() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white">
-      <div className="bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-6xl font-bold mb-4 bg-white p-4 rounded-lg">404</h1>
-        <h2 className="text-2xl font-semibold mb-2">Page Not Found</h2>
-        <p className="mb-6 text-lg text-gray-700">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-[var(--paper)] px-5 text-[var(--ink)]">
+      <div className="max-w-lg border border-[var(--line)] bg-[var(--surface)] p-8 shadow-sm sm:p-12">
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.16em] text-[var(--gold-dark)]">
+          404 · Not found
+        </p>
+        <h1 className="mb-3 font-serif text-5xl font-normal tracking-tight">
+          A missing page.
+        </h1>
+        <p className="mb-7 text-[var(--muted)]">
           Sorry, the page you are looking for does not exist. (yet...)
         </p>
         <Link
           href="/"
-          className="px-6 py-2 rounded bg-gray-600 hover:bg-gray-500 transition-colors font-medium">
-          Go Home
+          className="inline-flex items-center gap-3 border border-[var(--gold)] px-5 py-3 text-sm font-semibold transition-colors hover:bg-[var(--paper)]">
+          Back home <span aria-hidden="true">→</span>
         </Link>
       </div>
     </main>

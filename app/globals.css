@@ -1,263 +1,481 @@
 @import "tailwindcss";
+@import "highlight.js/styles/github.css";
+@plugin "@tailwindcss/typography";
+
+:root {
+  color-scheme: light;
+  --paper: #fbf7ed;
+  --surface: #fffdf7;
+  --ink: #172033;
+  --muted: #667080;
+  --line: #e9e1d1;
+  --line-strong: #d9c99e;
+  --gold: #bf9828;
+  --gold-dark: #967318;
+  --success: #2e7d42;
+  --warning: #d97706;
+  --error: #dc2626;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-sans: "Josefin Sans", "Trebuchet MS", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/fonts/Josefin_Sans/static/JosefinSans-ExtraLight.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/fonts/Josefin_Sans/static/JosefinSans-Light.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/fonts/Josefin_Sans/static/JosefinSans-Regular.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/fonts/Josefin_Sans/static/JosefinSans-Medium.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/fonts/Josefin_Sans/static/JosefinSans-SemiBold.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/fonts/Josefin_Sans/static/JosefinSans-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
 
 body {
-  align-items: center;
-  text-align: center;
-  margin: 10px;
+  min-width: 320px;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-main {
-  background-image: url("/images/falling-rocks.png");
-  background-color: oldlace;
-  background-size: contain;
-  background-repeat: no-repeat;
-  min-height: 96.5vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  font-family: descriptionFont;
+/* Keep route changes soft: a short drift, not a full-screen slide. */
+::view-transition-group(root) {
+  animation-duration: 2000ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation: page-exit 1000ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: page-enter 1000ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+}
+
+@keyframes page-exit {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 h1,
 h2,
-h3 {
-  color: black;
-}
-/* Website Font */
-@font-face {
-  font-family: descriptionFont;
-  src: url(/fonts/Josefin_Sans/static/JosefinSans-ExtraLight.ttf);
+h3,
+p {
+  margin-top: 0;
 }
 
-/* Central Link Container */
-.outbound-links-container {
-  border: solid 2px rgb(255, 255, 255, 0.5);
-  width: 400px;
-  padding: 20px 20px;
-  text-align: center;
-  margin: auto;
+.blog-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      ellipse at 85% 5%,
+      rgba(255, 255, 255, 0.72),
+      transparent 38%
+    ),
+    var(--paper);
+  font-family: var(--font-sans);
+}
+
+.blog-card {
+  padding: clamp(24px, 5vw, 46px) !important;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background-color: rgba(255, 253, 247, 0.82);
+  box-shadow: 0 14px 44px rgba(61, 49, 25, 0.045);
+  color: var(--ink);
+}
+
+.blog-card h1,
+.blog-card h2,
+.blog-card h3 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.blog-card a {
+  color: var(--gold-dark);
+  text-decoration-color: rgba(150, 115, 24, 0.45);
+  text-underline-offset: 3px;
+}
+
+.blog-card a:hover {
+  color: var(--ink);
+}
+
+.blog-card time,
+.blog-card .text-gray-500 {
+  color: var(--muted);
+}
+
+.blog-card li + li {
+  padding-top: 17px;
+  border-top: 1px solid var(--line);
+}
+
+.blog-card .prose {
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.blog-card .prose h3 {
+  margin-top: 1.8em;
+  font-size: 1.55em;
+}
+
+.blog-card .prose blockquote {
+  border-left-color: var(--gold);
+  color: var(--muted);
+}
+
+.blog-card .prose code {
+  color: var(--ink);
+}
+
+.contentPage {
+  min-height: 100vh;
+  padding: 8px;
+  background: var(--paper);
+}
+
+.contentFrame {
+  width: min(100%, 1440px);
+  min-height: calc(100svh - 16px);
+  margin: 0 auto;
+  padding: 18px clamp(22px, 8vw, 112px) 54px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background:
+    radial-gradient(
+      ellipse at 70% 20%,
+      rgba(255, 255, 255, 0.64),
+      transparent 42%
+    ),
+    #fcf8ef;
+}
+
+.contentMain {
+  width: min(100%, 850px);
+  margin: clamp(32px, 6vw, 62px) auto 0;
+}
+
+.contentEyebrow {
+  margin: 0 0 5px;
+  color: var(--gold-dark);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.blogTitle,
+.articleTitle {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.blogTitle {
+  margin: 0 0 5px;
+  font-size: clamp(38px, 5vw, 48px);
+  line-height: 1.1;
+}
+
+.blogLead {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.postList {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.postRow {
   display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 20px;
-  z-index: 2;
-  animation: fadein 5s 1;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  grid-template-columns: 94px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
 }
 
-.outbound-links-container > div {
-  width: 100%;
-  height: 140px;
-  margin: auto;
-  position: relative;
-  border-radius: 5px;
-  transition: background-color 1s;
+.postDate,
+.articleMeta {
+  color: var(--muted);
+  font-size: 10px;
 }
 
-.outbound-links-container > div:hover {
-  background-color: rgb(255, 255, 255, 0.7);
+.postInfo {
+  color: inherit;
+  text-decoration: none;
 }
 
-.outbound-links-container > div > a > img {
-  height: 40px;
-  width: auto;
-  position: absolute;
-  top: 25%;
-  right: 50%;
-  transform: translate(50%, 0%);
+.postTitle {
+  margin: 0 0 3px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
-div .outbound-links-container {
-  background-color: rgba(255, 253, 253, 0.6);
-  border-radius: 5px;
+.postDescription {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
 }
 
-/* Center Logo */
-#tunalogo {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: black;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  width: 100px;
-  text-align: center;
-  transition: border-bottom-right-radius 1.5s, border-bottom-left-radius 1.5s,
-    border-top-right-radius 1.5s, border-top-left-radius 1.5s;
+.postArrow {
+  color: var(--gold);
+  font-size: 18px;
+  text-align: right;
+  text-decoration: none;
+  transition: transform 160ms ease;
 }
 
-a > #abouttunalogo {
-  background: rgb(0, 0, 0);
-  position: absolute;
-  top: 5%;
-  left: 5%;
-  height: 150px;
-  border-radius: 50%;
+.postRow:hover .postArrow {
+  transform: translateX(3px);
 }
-#home-link {
-  position: fixed;
-  top: 175px;
-  left: 200px;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.8);
-  font-family: descriptionFont;
-  padding: 5px;
+
+.postRow:hover .postTitle {
+  color: var(--gold-dark);
+}
+
+.allPostsLink {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.allPostsLink:hover {
+  color: var(--gold-dark);
+}
+
+.articleHeader {
+  max-width: 800px;
+}
+
+.articleTitle {
+  margin: 8px 0 8px;
+  font-size: clamp(36px, 5vw, 52px);
+  line-height: 1.02;
+}
+
+.articleSummary {
+  max-width: 680px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.articleArtwork {
+  height: clamp(78px, 11vw, 124px);
+  margin: 18px 0 22px;
   border-radius: 2px;
-  font-size: 15px;
-  box-shadow: 2px 2px 5px grey;
-  opacity: 0;
-  transition: opacity 1s, left 1s;
-}
-#logo-tag:hover ~ #home-link {
-  opacity: 1;
-  left: 15%;
+  background-color: #eee6d8;
+  background-image: url("/images/falling-rocks.png");
+  background-repeat: no-repeat;
+  background-position: center 53%;
+  background-size: 100% auto;
+  opacity: 0.8;
 }
 
-#about-link {
-  position: fixed;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.8);
-  font-family: descriptionFont;
-  padding: 5px;
-  border-radius: 2px;
-  font-size: 15px;
-  box-shadow: 2px 2px 5px grey;
-  opacity: 0;
-  transition: opacity 1s, top 1s;
+.articleProse {
+  max-width: 800px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.8;
 }
 
-#logo-tag:hover ~ #about-link {
-  opacity: 1;
-  top: 65%;
+.articleProse h2,
+.articleProse h3,
+.articleProse h4 {
+  margin: 1.6em 0 0.55em;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.65em;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
 }
 
-/* Text Formatting */
-#Code-Text,
-#Music-Text,
-#Codepen-Text,
-#Resume-Text {
-  position: absolute;
-  transform: translate(-50%, 10%);
-  top: 60%;
-  left: 50%;
-  color: black;
-  font-family: descriptionFont;
-  font-weight: 100;
-  font-size: 20px;
-  opacity: 0;
-  transition: opacity 2s;
+.articleProse p {
+  margin: 0 0 1.25em;
 }
 
-/* Descriptive Text Visibility */
-#Code:hover > #Code-Text,
-#Music:hover > #Music-Text,
-#Codepen:hover > #Codepen-Text,
-#Resume:hover > #Resume-Text {
-  opacity: 1;
+.articleProse a {
+  color: var(--gold-dark);
+  text-decoration-color: rgba(150, 115, 24, 0.45);
+  text-underline-offset: 3px;
 }
 
-#Code:hover ~ a > img#tunalogo {
-  border-top-left-radius: 15%;
+.articleProse blockquote {
+  margin: 1.4em 0;
+  padding-left: 18px;
+  border-left: 2px solid var(--gold);
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 1.15em;
 }
 
-#Music:hover ~ a > img#tunalogo {
-  border-top-right-radius: 15%;
+.articleProse pre {
+  overflow-x: auto;
+  padding: 18px;
+  border-radius: 3px;
+  background: #202733;
+  color: #f5f2e9;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.65;
 }
 
-#Codepen:hover ~ a > img#tunalogo {
-  border-bottom-left-radius: 15%;
+.articleProse code {
+  font-family: var(--font-mono);
 }
 
-#Resume:hover ~ a > img#tunalogo {
-  border-bottom-right-radius: 15%;
+.articleProse :not(pre) > code {
+  padding: 0.1em 0.3em;
+  background: rgba(217, 201, 158, 0.25);
 }
 
-#tunaheaderlogo {
-  animation: intro 5s 1;
-  position: fixed;
-  z-index: 42;
-  top: 10%;
-  left: 7%;
-  width: 20%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background-color: rgba(255, 253, 253, 1);
-  transition: background-color 1s;
-  opacity: 0%;
+.articleProse img {
+  max-width: 100%;
+  height: auto;
 }
 
-@keyframes intro {
-  0% {
-    top: 10%;
-    left: 50%;
-    opacity: 100%;
+@media (max-width: 560px) {
+  .contentPage {
+    padding: 5px;
   }
-  50% {
-    top: 50%;
-    left: 50%;
-  }
-  55% {
-    top: 50%;
-    left: 50%;
-    opacity: 100%;
-  }
-  100% {
-    top: 10%;
-    left: 7%;
-    opacity: 0%;
-  }
-}
 
-@keyframes fadein {
-  0% {
-    opacity: 0%;
+  .contentFrame {
+    min-height: calc(100svh - 10px);
+    padding: 14px 18px 36px;
   }
-  50% {
-    opacity: 0%;
-    grid-gap: 250px;
+
+  .contentMain {
+    margin-top: 34px;
   }
-  55% {
-    visibility: 20%;
-    grid-gap: 150px;
+
+  .postRow {
+    grid-template-columns: 1fr 24px;
+    gap: 4px 12px;
   }
-  100% {
-    opacity: 100%;
+
+  .postDate {
+    grid-column: 1;
+  }
+
+  .postInfo {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .postArrow {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .articleArtwork {
+    background-size: auto 260%;
   }
 }
 
-/* Mobile CSS */
-@media only screen and (max-width: 700px) {
-  .main {
-    background-size: cover;
-    background-repeat: repeat-y;
-  }
-  #tunalogo {
-    top: 0%;
-  }
-  #about-link {
-    opacity: 1;
-    top: 12%;
-  }
-  .outbound-links-container {
-    width: 60%;
-  }
-  #Code-Text,
-  #Music-Text,
-  #Codepen-Text,
-  #Resume-Text {
-    opacity: 1;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
   }
 }
