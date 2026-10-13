@@ -37,6 +37,7 @@ type Repo = {
   stargazers_count: number;
   pushed_at: string;
   fork: boolean;
+  topics: string[];
 };
 
 async function getRecentRepos(): Promise<Repo[]> {
@@ -151,6 +152,13 @@ export default async function ProjectsPage() {
                       <p className={styles.cardText}>
                         {repo.description ?? "No description yet."}
                       </p>
+                      <ul className={styles.tags}>
+                        {repo.topics.map((topic) => (
+                          <li key={topic} className={styles.tag}>
+                            {topic}
+                          </li>
+                        ))}
+                      </ul>
                       <span className={styles.cardMeta}>
                         Updated{" "}
                         {new Date(repo.pushed_at).toLocaleDateString("en-US", {
