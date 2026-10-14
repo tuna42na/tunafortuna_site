@@ -46,7 +46,7 @@ async function getRecentRepos(): Promise<Repo[]> {
       `https://api.github.com/users/${GITHUB_USER}/repos?sort=pushed&per_page=12`,
       {
         headers: { Accept: "application/vnd.github+json" },
-        next: { revalidate: 86400 },
+        next: { revalidate: 60 * 60 * 6 }, // revalidate every 6 hours
       },
     );
     if (!res.ok) return [];
